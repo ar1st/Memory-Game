@@ -1,0 +1,1201 @@
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.io.IOException;
+import java.util.*;
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.UIManager;
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author ARIS
+ */
+public class theGame extends javax.swing.JFrame {
+
+    /**
+     * Creates new form theGame
+     */
+    public theGame() {
+        initComponents();
+        setSize(1000, 500);
+        counter = 0 ;
+        setArrayBlocks();
+        setFixedSize();
+        initiateAlphabet();
+        disableAllBlocks();
+
+    }
+    
+    public void showVictoryDialog(){
+        victoryDialog.setVisible(true);
+        victoryDialog.setSize(800, 400);
+        victoryDialog.setLocationRelativeTo(this);
+        
+    }
+    
+    public void disableAllBlocks(){
+        isEnable = new boolean[30];
+        for ( int i = 0 ; i < isEnable.length; i++)
+            isEnable[i] = false;
+    }
+    
+    public void enableAllBlocks(){
+        for ( int i = 0 ; i < isEnable.length; i++)
+            isEnable[i] = true;
+    }
+    
+    public void initiateAlphabet(){
+        alphabet = new char[15][2];
+        
+        for ( int i=0; i < 2; i++){
+            alphabet[0][i] = 'A';
+            alphabet[1][i] = 'B';
+            alphabet[2][i] = 'C';
+            alphabet[3][i] = 'D';
+            alphabet[4][i] = 'E';
+            alphabet[5][i] = 'F';
+            alphabet[6][i] = 'G';
+            alphabet[7][i] = 'H';
+            alphabet[8][i] = 'I';
+            alphabet[9][i] = 'J';
+            alphabet[10][i] = 'K';
+            alphabet[11][i] = 'L';
+            alphabet[12][i] = 'M';
+            alphabet[13][i] = 'N';
+            alphabet[14][i] = 'O';
+        }
+    }
+    
+    public void setArrayBlocks(){
+        arrayBlocks = new JLabel[30];
+        arrayBlocks[0] = block1;
+        arrayBlocks[1] = block2;
+        arrayBlocks[2] = block3;
+        arrayBlocks[3] = block4;
+        arrayBlocks[4] = block5;
+        arrayBlocks[5] = block6;
+        arrayBlocks[6] = block7;
+        arrayBlocks[7] = block8;
+        arrayBlocks[8] = block9;
+        arrayBlocks[9] = block10;
+        arrayBlocks[10] = block11;
+        arrayBlocks[11] = block12;
+        arrayBlocks[12] = block13;
+        arrayBlocks[13] = block14;
+        arrayBlocks[14] = block15;
+        arrayBlocks[15] = block16;
+        arrayBlocks[16] = block17;
+        arrayBlocks[17] = block18;
+        arrayBlocks[18] = block19;
+        arrayBlocks[19] = block20;
+        arrayBlocks[20] = block21;
+        arrayBlocks[21] = block22;
+        arrayBlocks[22] = block23;
+        arrayBlocks[23] = block24;
+        arrayBlocks[24] = block25;
+        arrayBlocks[25] = block26;
+        arrayBlocks[26] = block27;
+        arrayBlocks[27] = block28;
+        arrayBlocks[28] = block29;
+        arrayBlocks[29] = block30;
+        
+        
+    }
+    
+    public void restoreDefaultColors(){
+        
+        Color backgroundColor = UIManager.getColor ( "Label.background" );
+        Color foregroundColor = UIManager.getColor ( "Label.foreground" );
+
+        for ( int i =0; i < arrayBlocks.length; i++){
+            arrayBlocks[i].setBackground( backgroundColor );
+            arrayBlocks[i].setForeground( foregroundColor );
+        }
+            
+        
+            
+    }
+    
+    public void setFixedSize(){
+        Dimension m = new Dimension(50,50);
+        for ( int i =0 ; i < arrayBlocks.length;i++){
+            arrayBlocks[i].setPreferredSize(m);
+        }
+        
+    }
+    
+    public void initiateBlocks(){
+        int count = 0;
+        int randomNumber1;
+        int randomNumber2;
+        int check[][] = new int[15][2];
+        insidetheBlock = new String[30];
+        
+        for ( int i = 0 ; i < 15; i ++){
+            for ( int j = 0 ; j < 2; j++)
+                check[i][j] = 0;  
+        }
+        
+        while ( count != 30){
+            randomNumber1 = (int)(Math.random() * 15);
+            randomNumber2 = (int)(Math.random()*2);
+            
+            if ( check[randomNumber1][randomNumber2] == 0){
+                check[randomNumber1][randomNumber2] = 1;          
+                arrayBlocks[count].setText( String.valueOf(alphabet[randomNumber1][randomNumber2]) );
+                insidetheBlock[count] = arrayBlocks[count].getText();
+                count++;
+            }
+        }
+    }
+    
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
+
+        victoryDialog = new javax.swing.JDialog();
+        jPanel1 = new javax.swing.JPanel(){
+
+            public void paintComponent( Graphics g){
+                ImageIcon im = new ImageIcon("victory.jpg");
+                Image i = im.getImage();
+
+                g.drawImage( i, 0, 0, this.getSize().width, this.getSize().height, this);
+            }
+
+        };
+        replayButton = new javax.swing.JButton();
+        quitButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        block1 = new javax.swing.JLabel();
+        block2 = new javax.swing.JLabel();
+        block3 = new javax.swing.JLabel();
+        block4 = new javax.swing.JLabel();
+        block5 = new javax.swing.JLabel();
+        block6 = new javax.swing.JLabel();
+        block7 = new javax.swing.JLabel();
+        block8 = new javax.swing.JLabel();
+        block9 = new javax.swing.JLabel();
+        block10 = new javax.swing.JLabel();
+        block11 = new javax.swing.JLabel();
+        block12 = new javax.swing.JLabel();
+        block13 = new javax.swing.JLabel();
+        block14 = new javax.swing.JLabel();
+        block15 = new javax.swing.JLabel();
+        block16 = new javax.swing.JLabel();
+        block17 = new javax.swing.JLabel();
+        block18 = new javax.swing.JLabel();
+        block19 = new javax.swing.JLabel();
+        block20 = new javax.swing.JLabel();
+        block21 = new javax.swing.JLabel();
+        block22 = new javax.swing.JLabel();
+        block23 = new javax.swing.JLabel();
+        block24 = new javax.swing.JLabel();
+        block25 = new javax.swing.JLabel();
+        block26 = new javax.swing.JLabel();
+        block27 = new javax.swing.JLabel();
+        block28 = new javax.swing.JLabel();
+        block29 = new javax.swing.JLabel();
+        block30 = new javax.swing.JLabel();
+        timer = new javax.swing.JLabel();
+        timerStamp = new javax.swing.JLabel();
+        matches = new javax.swing.JLabel();
+        matchesStamp = new javax.swing.JLabel();
+        startButton = new javax.swing.JButton();
+
+        victoryDialog.setTitle("Victory!");
+
+        replayButton.setText("Replay");
+        replayButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                replayButtonActionPerformed(evt);
+            }
+        });
+
+        quitButton.setText("Quit");
+        quitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quitButtonActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(104, 104, 104)
+                .addComponent(replayButton, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(quitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(87, 87, 87))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(27, 27, 27))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 231, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(replayButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(quitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(87, 87, 87))
+        );
+
+        javax.swing.GroupLayout victoryDialogLayout = new javax.swing.GroupLayout(victoryDialog.getContentPane());
+        victoryDialog.getContentPane().setLayout(victoryDialogLayout);
+        victoryDialogLayout.setHorizontalGroup(
+            victoryDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, Short.MAX_VALUE)
+        );
+        victoryDialogLayout.setVerticalGroup(
+            victoryDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("MemoryGame");
+        getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        block1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        block1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        block1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        block1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        block1.setMaximumSize(new java.awt.Dimension(50, 50));
+        block1.setMinimumSize(new java.awt.Dimension(50, 50));
+        block1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                block1FocusGained(evt);
+            }
+        });
+        block1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                block1MouseClicked(evt);
+            }
+        });
+        block1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                block1PropertyChange(evt);
+            }
+        });
+        block1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                block1KeyPressed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 28;
+        gridBagConstraints.ipady = 47;
+        getContentPane().add(block1, gridBagConstraints);
+
+        block2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        block2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        block2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        block2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        block2.setMaximumSize(new java.awt.Dimension(50, 50));
+        block2.setMinimumSize(new java.awt.Dimension(50, 50));
+        block2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                block2MouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 28;
+        gridBagConstraints.ipady = 47;
+        getContentPane().add(block2, gridBagConstraints);
+
+        block3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        block3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        block3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        block3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        block3.setMaximumSize(new java.awt.Dimension(50, 50));
+        block3.setMinimumSize(new java.awt.Dimension(50, 50));
+        block3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                block3MouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 28;
+        gridBagConstraints.ipady = 47;
+        getContentPane().add(block3, gridBagConstraints);
+
+        block4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        block4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        block4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        block4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        block4.setMaximumSize(new java.awt.Dimension(50, 50));
+        block4.setMinimumSize(new java.awt.Dimension(50, 50));
+        block4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                block4MouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 28;
+        gridBagConstraints.ipady = 47;
+        getContentPane().add(block4, gridBagConstraints);
+
+        block5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        block5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        block5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        block5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        block5.setMaximumSize(new java.awt.Dimension(50, 50));
+        block5.setMinimumSize(new java.awt.Dimension(50, 50));
+        block5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                block5MouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 28;
+        gridBagConstraints.ipady = 47;
+        getContentPane().add(block5, gridBagConstraints);
+
+        block6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        block6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        block6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        block6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        block6.setMaximumSize(new java.awt.Dimension(50, 50));
+        block6.setMinimumSize(new java.awt.Dimension(50, 50));
+        block6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                block6MouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 29;
+        gridBagConstraints.ipady = 47;
+        getContentPane().add(block6, gridBagConstraints);
+
+        block7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        block7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        block7.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        block7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        block7.setMaximumSize(new java.awt.Dimension(50, 50));
+        block7.setMinimumSize(new java.awt.Dimension(50, 50));
+        block7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                block7MouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 28;
+        gridBagConstraints.ipady = 47;
+        getContentPane().add(block7, gridBagConstraints);
+
+        block8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        block8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        block8.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        block8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        block8.setMaximumSize(new java.awt.Dimension(50, 50));
+        block8.setMinimumSize(new java.awt.Dimension(50, 50));
+        block8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                block8MouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 28;
+        gridBagConstraints.ipady = 47;
+        getContentPane().add(block8, gridBagConstraints);
+
+        block9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        block9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        block9.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        block9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        block9.setMaximumSize(new java.awt.Dimension(50, 50));
+        block9.setMinimumSize(new java.awt.Dimension(50, 50));
+        block9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                block9MouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 28;
+        gridBagConstraints.ipady = 47;
+        getContentPane().add(block9, gridBagConstraints);
+
+        block10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        block10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        block10.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        block10.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        block10.setMaximumSize(new java.awt.Dimension(50, 50));
+        block10.setMinimumSize(new java.awt.Dimension(50, 50));
+        block10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                block10MouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 28;
+        gridBagConstraints.ipady = 47;
+        getContentPane().add(block10, gridBagConstraints);
+
+        block11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        block11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        block11.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        block11.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        block11.setMaximumSize(new java.awt.Dimension(50, 50));
+        block11.setMinimumSize(new java.awt.Dimension(50, 50));
+        block11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                block11MouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 28;
+        gridBagConstraints.ipady = 47;
+        getContentPane().add(block11, gridBagConstraints);
+
+        block12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        block12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        block12.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        block12.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        block12.setMaximumSize(new java.awt.Dimension(50, 50));
+        block12.setMinimumSize(new java.awt.Dimension(50, 50));
+        block12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                block12MouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 28;
+        gridBagConstraints.ipady = 47;
+        getContentPane().add(block12, gridBagConstraints);
+
+        block13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        block13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        block13.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        block13.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        block13.setMaximumSize(new java.awt.Dimension(50, 50));
+        block13.setMinimumSize(new java.awt.Dimension(50, 50));
+        block13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                block13MouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 28;
+        gridBagConstraints.ipady = 47;
+        getContentPane().add(block13, gridBagConstraints);
+
+        block14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        block14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        block14.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        block14.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        block14.setMaximumSize(new java.awt.Dimension(50, 50));
+        block14.setMinimumSize(new java.awt.Dimension(50, 50));
+        block14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                block14MouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 28;
+        gridBagConstraints.ipady = 47;
+        getContentPane().add(block14, gridBagConstraints);
+
+        block15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        block15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        block15.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        block15.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        block15.setMaximumSize(new java.awt.Dimension(50, 50));
+        block15.setMinimumSize(new java.awt.Dimension(50, 50));
+        block15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                block15MouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 28;
+        gridBagConstraints.ipady = 47;
+        getContentPane().add(block15, gridBagConstraints);
+
+        block16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        block16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        block16.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        block16.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        block16.setMaximumSize(new java.awt.Dimension(50, 50));
+        block16.setMinimumSize(new java.awt.Dimension(50, 50));
+        block16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                block16MouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 28;
+        gridBagConstraints.ipady = 47;
+        getContentPane().add(block16, gridBagConstraints);
+
+        block17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        block17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        block17.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        block17.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        block17.setMaximumSize(new java.awt.Dimension(50, 50));
+        block17.setMinimumSize(new java.awt.Dimension(50, 50));
+        block17.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                block17MouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 28;
+        gridBagConstraints.ipady = 47;
+        getContentPane().add(block17, gridBagConstraints);
+
+        block18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        block18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        block18.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        block18.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        block18.setMaximumSize(new java.awt.Dimension(50, 50));
+        block18.setMinimumSize(new java.awt.Dimension(50, 50));
+        block18.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                block18MouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 28;
+        gridBagConstraints.ipady = 47;
+        getContentPane().add(block18, gridBagConstraints);
+
+        block19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        block19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        block19.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        block19.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        block19.setMaximumSize(new java.awt.Dimension(50, 50));
+        block19.setMinimumSize(new java.awt.Dimension(50, 50));
+        block19.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                block19MouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 28;
+        gridBagConstraints.ipady = 47;
+        getContentPane().add(block19, gridBagConstraints);
+
+        block20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        block20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        block20.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        block20.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        block20.setMaximumSize(new java.awt.Dimension(50, 50));
+        block20.setMinimumSize(new java.awt.Dimension(50, 50));
+        block20.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                block20MouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 28;
+        gridBagConstraints.ipady = 47;
+        getContentPane().add(block20, gridBagConstraints);
+
+        block21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        block21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        block21.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        block21.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        block21.setMaximumSize(new java.awt.Dimension(50, 50));
+        block21.setMinimumSize(new java.awt.Dimension(100, 100));
+        block21.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                block21MouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 28;
+        gridBagConstraints.ipady = 47;
+        getContentPane().add(block21, gridBagConstraints);
+
+        block22.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        block22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        block22.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        block22.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        block22.setMaximumSize(new java.awt.Dimension(50, 50));
+        block22.setMinimumSize(new java.awt.Dimension(50, 50));
+        block22.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                block22MouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 28;
+        gridBagConstraints.ipady = 47;
+        getContentPane().add(block22, gridBagConstraints);
+
+        block23.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        block23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        block23.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        block23.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        block23.setMaximumSize(new java.awt.Dimension(50, 50));
+        block23.setMinimumSize(new java.awt.Dimension(50, 50));
+        block23.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                block23MouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 28;
+        gridBagConstraints.ipady = 47;
+        getContentPane().add(block23, gridBagConstraints);
+
+        block24.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        block24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        block24.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        block24.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        block24.setMaximumSize(new java.awt.Dimension(50, 50));
+        block24.setMinimumSize(new java.awt.Dimension(50, 50));
+        block24.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                block24MouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 28;
+        gridBagConstraints.ipady = 47;
+        getContentPane().add(block24, gridBagConstraints);
+
+        block25.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        block25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        block25.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        block25.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        block25.setMaximumSize(new java.awt.Dimension(50, 50));
+        block25.setMinimumSize(new java.awt.Dimension(50, 50));
+        block25.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                block25MouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 28;
+        gridBagConstraints.ipady = 47;
+        getContentPane().add(block25, gridBagConstraints);
+
+        block26.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        block26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        block26.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        block26.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        block26.setMaximumSize(new java.awt.Dimension(50, 50));
+        block26.setMinimumSize(new java.awt.Dimension(50, 50));
+        block26.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                block26MouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 28;
+        gridBagConstraints.ipady = 47;
+        getContentPane().add(block26, gridBagConstraints);
+
+        block27.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        block27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        block27.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        block27.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        block27.setMaximumSize(new java.awt.Dimension(50, 50));
+        block27.setMinimumSize(new java.awt.Dimension(50, 50));
+        block27.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                block27MouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 28;
+        gridBagConstraints.ipady = 47;
+        getContentPane().add(block27, gridBagConstraints);
+
+        block28.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        block28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        block28.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        block28.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        block28.setMaximumSize(new java.awt.Dimension(50, 50));
+        block28.setMinimumSize(new java.awt.Dimension(50, 50));
+        block28.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                block28MouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 28;
+        gridBagConstraints.ipady = 47;
+        getContentPane().add(block28, gridBagConstraints);
+
+        block29.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        block29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        block29.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        block29.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        block29.setMaximumSize(new java.awt.Dimension(50, 50));
+        block29.setMinimumSize(new java.awt.Dimension(50, 50));
+        block29.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                block29MouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 28;
+        gridBagConstraints.ipady = 47;
+        getContentPane().add(block29, gridBagConstraints);
+
+        block30.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        block30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        block30.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        block30.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        block30.setMaximumSize(new java.awt.Dimension(50, 50));
+        block30.setMinimumSize(new java.awt.Dimension(50, 50));
+        block30.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                block30MouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 28;
+        gridBagConstraints.ipady = 47;
+        getContentPane().add(block30, gridBagConstraints);
+
+        timer.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        timer.setText("0");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 14;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 3);
+        getContentPane().add(timer, gridBagConstraints);
+
+        timerStamp.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        timerStamp.setText("Timer :");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 1;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 1);
+        getContentPane().add(timerStamp, gridBagConstraints);
+
+        matches.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        matches.setText("15");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 14;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 3);
+        getContentPane().add(matches, gridBagConstraints);
+
+        matchesStamp.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        matchesStamp.setText("Available Matches :");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 1;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 1);
+        getContentPane().add(matchesStamp, gridBagConstraints);
+
+        startButton.setText("Start");
+        startButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 13;
+        getContentPane().add(startButton, gridBagConstraints);
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
+        
+            
+            //for the replay
+            restoreDefaultColors();     // restore the default background color of the labels
+            matches.setText("15");
+            timer.setText("0");
+            counter = 0;
+            //
+            
+            startButton.setEnabled(false);
+            enableAllBlocks();
+            initiateBlocks();
+            Utilities.setTimer(2,arrayBlocks);
+            
+            Timer t = new Timer();
+            t.schedule(new TimerTask(){
+                
+                public void run(){
+                    
+                    if ( Integer.valueOf(matches.getText()) == 0){
+                        startButton.setEnabled(true);
+                        startButton.setText("Replay");
+                        t.cancel();
+                        
+                        showVictoryDialog();
+                    }
+                    else {
+                        timer.setText( String.valueOf(counter) );
+                        counter++;
+                    }
+                    
+                }
+            }
+                    , 0, 1000);
+            
+        
+    }//GEN-LAST:event_startButtonActionPerformed
+
+    private void block1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_block1MouseClicked
+        kk.boxClicked(evt.getComponent(),insidetheBlock, arrayBlocks,0);
+    }//GEN-LAST:event_block1MouseClicked
+
+    private void block1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_block1KeyPressed
+        
+    }//GEN-LAST:event_block1KeyPressed
+
+    private void block1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_block1FocusGained
+      
+    }//GEN-LAST:event_block1FocusGained
+
+    private void block1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_block1PropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_block1PropertyChange
+
+    private void block2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_block2MouseClicked
+        kk.boxClicked(evt.getComponent(),insidetheBlock, arrayBlocks,1);
+    }//GEN-LAST:event_block2MouseClicked
+
+    private void block3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_block3MouseClicked
+        kk.boxClicked(evt.getComponent(),insidetheBlock, arrayBlocks,2);
+    }//GEN-LAST:event_block3MouseClicked
+
+    private void block4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_block4MouseClicked
+        kk.boxClicked(evt.getComponent(),insidetheBlock, arrayBlocks,3);
+    }//GEN-LAST:event_block4MouseClicked
+
+    private void block5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_block5MouseClicked
+        kk.boxClicked(evt.getComponent(),insidetheBlock, arrayBlocks,4);
+    }//GEN-LAST:event_block5MouseClicked
+
+    private void block6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_block6MouseClicked
+        kk.boxClicked(evt.getComponent(),insidetheBlock, arrayBlocks,5);
+    }//GEN-LAST:event_block6MouseClicked
+
+    private void block7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_block7MouseClicked
+        kk.boxClicked(evt.getComponent(),insidetheBlock, arrayBlocks,6);
+    }//GEN-LAST:event_block7MouseClicked
+
+    private void block8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_block8MouseClicked
+        kk.boxClicked(evt.getComponent(),insidetheBlock, arrayBlocks,7);
+    }//GEN-LAST:event_block8MouseClicked
+
+    private void block9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_block9MouseClicked
+        kk.boxClicked(evt.getComponent(),insidetheBlock, arrayBlocks,8);
+    }//GEN-LAST:event_block9MouseClicked
+
+    private void block10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_block10MouseClicked
+        kk.boxClicked(evt.getComponent(),insidetheBlock, arrayBlocks,9);
+    }//GEN-LAST:event_block10MouseClicked
+
+    private void block11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_block11MouseClicked
+        kk.boxClicked(evt.getComponent(),insidetheBlock, arrayBlocks,10);
+    }//GEN-LAST:event_block11MouseClicked
+
+    private void block12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_block12MouseClicked
+        kk.boxClicked(evt.getComponent(),insidetheBlock, arrayBlocks,11);
+    }//GEN-LAST:event_block12MouseClicked
+
+    private void block13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_block13MouseClicked
+        kk.boxClicked(evt.getComponent(),insidetheBlock, arrayBlocks,12);
+    }//GEN-LAST:event_block13MouseClicked
+
+    private void block14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_block14MouseClicked
+        kk.boxClicked(evt.getComponent(),insidetheBlock, arrayBlocks,13);
+    }//GEN-LAST:event_block14MouseClicked
+
+    private void block15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_block15MouseClicked
+        kk.boxClicked(evt.getComponent(),insidetheBlock, arrayBlocks,14);
+    }//GEN-LAST:event_block15MouseClicked
+
+    private void block16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_block16MouseClicked
+        kk.boxClicked(evt.getComponent(),insidetheBlock, arrayBlocks,15);
+    }//GEN-LAST:event_block16MouseClicked
+
+    private void block17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_block17MouseClicked
+        kk.boxClicked(evt.getComponent(),insidetheBlock, arrayBlocks,16);
+    }//GEN-LAST:event_block17MouseClicked
+
+    private void block18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_block18MouseClicked
+        kk.boxClicked(evt.getComponent(),insidetheBlock, arrayBlocks,17);
+    }//GEN-LAST:event_block18MouseClicked
+
+    private void block19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_block19MouseClicked
+        kk.boxClicked(evt.getComponent(),insidetheBlock, arrayBlocks,18);
+    }//GEN-LAST:event_block19MouseClicked
+
+    private void block20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_block20MouseClicked
+        kk.boxClicked(evt.getComponent(),insidetheBlock, arrayBlocks,19);
+    }//GEN-LAST:event_block20MouseClicked
+
+    private void block21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_block21MouseClicked
+        kk.boxClicked(evt.getComponent(),insidetheBlock, arrayBlocks,20);
+    }//GEN-LAST:event_block21MouseClicked
+
+    private void block22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_block22MouseClicked
+        kk.boxClicked(evt.getComponent(),insidetheBlock, arrayBlocks,21);
+    }//GEN-LAST:event_block22MouseClicked
+
+    private void block23MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_block23MouseClicked
+        kk.boxClicked(evt.getComponent(),insidetheBlock, arrayBlocks,22);
+    }//GEN-LAST:event_block23MouseClicked
+
+    private void block24MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_block24MouseClicked
+        kk.boxClicked(evt.getComponent(),insidetheBlock, arrayBlocks,23);
+    }//GEN-LAST:event_block24MouseClicked
+
+    private void block25MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_block25MouseClicked
+        kk.boxClicked(evt.getComponent(),insidetheBlock, arrayBlocks,24);
+    }//GEN-LAST:event_block25MouseClicked
+
+    private void block26MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_block26MouseClicked
+        kk.boxClicked(evt.getComponent(),insidetheBlock, arrayBlocks,25);
+    }//GEN-LAST:event_block26MouseClicked
+
+    private void block27MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_block27MouseClicked
+        kk.boxClicked(evt.getComponent(),insidetheBlock, arrayBlocks,26);
+    }//GEN-LAST:event_block27MouseClicked
+
+    private void block28MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_block28MouseClicked
+        kk.boxClicked(evt.getComponent(),insidetheBlock, arrayBlocks,27);
+    }//GEN-LAST:event_block28MouseClicked
+
+    private void block29MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_block29MouseClicked
+        kk.boxClicked(evt.getComponent(),insidetheBlock, arrayBlocks,28);
+    }//GEN-LAST:event_block29MouseClicked
+
+    private void block30MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_block30MouseClicked
+        kk.boxClicked(evt.getComponent(),insidetheBlock, arrayBlocks,29);
+    }//GEN-LAST:event_block30MouseClicked
+
+    private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_quitButtonActionPerformed
+
+    private void replayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_replayButtonActionPerformed
+        startButton.doClick();
+        victoryDialog.setVisible(false);
+    }//GEN-LAST:event_replayButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        victoryDialog.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(theGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(theGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(theGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(theGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new theGame().setVisible(true);
+                
+                
+                
+            }
+        });
+    }
+    
+    int counter;
+    static boolean isEnable[];
+    IsSelected kk = new IsSelected();
+    String insidetheBlock[];
+    JLabel arrayBlocks[];
+    char alphabet[][];
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel block1;
+    private javax.swing.JLabel block10;
+    private javax.swing.JLabel block11;
+    private javax.swing.JLabel block12;
+    private javax.swing.JLabel block13;
+    private javax.swing.JLabel block14;
+    private javax.swing.JLabel block15;
+    private javax.swing.JLabel block16;
+    private javax.swing.JLabel block17;
+    private javax.swing.JLabel block18;
+    private javax.swing.JLabel block19;
+    private javax.swing.JLabel block2;
+    private javax.swing.JLabel block20;
+    private javax.swing.JLabel block21;
+    private javax.swing.JLabel block22;
+    private javax.swing.JLabel block23;
+    private javax.swing.JLabel block24;
+    private javax.swing.JLabel block25;
+    private javax.swing.JLabel block26;
+    private javax.swing.JLabel block27;
+    private javax.swing.JLabel block28;
+    private javax.swing.JLabel block29;
+    private javax.swing.JLabel block3;
+    private javax.swing.JLabel block30;
+    private javax.swing.JLabel block4;
+    private javax.swing.JLabel block5;
+    private javax.swing.JLabel block6;
+    private javax.swing.JLabel block7;
+    private javax.swing.JLabel block8;
+    private javax.swing.JLabel block9;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JPanel jPanel1;
+    public static javax.swing.JLabel matches;
+    private javax.swing.JLabel matchesStamp;
+    private javax.swing.JButton quitButton;
+    private javax.swing.JButton replayButton;
+    private javax.swing.JButton startButton;
+    private javax.swing.JLabel timer;
+    private javax.swing.JLabel timerStamp;
+    private javax.swing.JDialog victoryDialog;
+    // End of variables declaration//GEN-END:variables
+}
